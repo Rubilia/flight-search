@@ -13,6 +13,8 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import FlightIcon from "@mui/icons-material/Flight";
 import HotelIcon from "@mui/icons-material/Hotel";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import logo from "../assets/images/google.svg";
 
@@ -25,6 +27,10 @@ function Header() {
     { label: "Hotels", icon: <HotelIcon /> },
     { label: "Vacation Rentals", icon: <HomeWorkIcon /> },
   ];
+  // Hide icons on mobile
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(`(min-width:${theme.breakpoints.values.md + 100}px)`);
+
   return (
     <AppBar
       position="static"
@@ -49,7 +55,7 @@ function Header() {
           />
         </IconButton>
 
-        {navButtons.map((button, index) => (
+        {isLargeScreen && navButtons.map((button, index) => (
           <Button
             key={index}
             variant="outlined"
