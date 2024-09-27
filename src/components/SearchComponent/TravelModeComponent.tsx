@@ -1,10 +1,8 @@
-// src/components/TravelModeComponent.tsx
-
 import React, { useState } from "react";
-import { Menu, MenuItem, Button, Typography } from "@mui/material";
+import { Menu, MenuItem, Button, Typography, Box } from "@mui/material";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import TimelineIcon from "@mui/icons-material/Timeline";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import MultipleStopIcon from "@mui/icons-material/MultipleStop";
 import CheckIcon from "@mui/icons-material/Check";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
@@ -25,8 +23,8 @@ function TravelModeComponent() {
 
   const options = [
     { label: "Round Trip", icon: <SwapHorizIcon /> },
-    { label: "One Way", icon: <ArrowForwardIcon /> },
-    { label: "Multi-City", icon: <TimelineIcon /> },
+    { label: "One Way", icon: <ArrowRightAltIcon /> },
+    { label: "Multi-City", icon: <MultipleStopIcon /> },
   ];
 
   const getIcon = () => {
@@ -38,14 +36,12 @@ function TravelModeComponent() {
     <div className="relative inline-block text-left">
       <Button
         onClick={handleClick}
-        className={`flex items-center px-4 py-2 rounded-md text-sm font-normal focus:outline-none ${
-          anchorEl
-            ? "text-blue-600 border-b-2 border-blue-600"
-            : "text-gray-600"
+        className={`flex items-center px-4 py-2 text-sm font-normal focus:outline-none ${
+          anchorEl ? "border-b-2 border-blue-600" : "text-gray-600"
         }`}
         disableRipple
         sx={{
-          backgroundColor: "transparent",
+          backgroundColor: anchorEl ? "#e8f0fe" : "transparent",
           textTransform: "none",
           fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
           fontSize: "14px",
@@ -53,8 +49,12 @@ function TravelModeComponent() {
           letterSpacing: "0.2px",
           lineHeight: "20px",
           color: "#70757a",
+          borderRadius: "0px",
+          borderBottom: anchorEl
+            ? "2px solid #1a73e8"
+            : "2px solid transparent",
           "&:hover": {
-            backgroundColor: "transparent",
+            backgroundColor: "#e8f0fe",
           },
           "& .MuiSvgIcon-root": {
             color: anchorEl ? "#1a73e8" : "#70757a",
@@ -98,6 +98,8 @@ function TravelModeComponent() {
             onClick={() => handleClose(option.label)}
             selected={option.label === travelMode}
             sx={{
+              display: "flex",
+              alignItems: "center",
               fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "14px",
               fontWeight: 400,
@@ -112,15 +114,17 @@ function TravelModeComponent() {
               },
             }}
           >
-            <Typography sx={{ flexGrow: 1 }}>{option.label}</Typography>
-            {option.label === travelMode && (
-              <CheckIcon sx={{ color: "#1a73e8", marginLeft: "auto" }} />
+            {option.label === travelMode ? (
+              <CheckIcon sx={{ color: "#1a73e8", marginRight: "8px" }} />
+            ) : (
+              <Box sx={{ width: "24px", marginRight: "8px" }} />
             )}
+            <Typography sx={{ flexGrow: 1 }}>{option.label}</Typography>
           </MenuItem>
         ))}
       </Menu>
     </div>
   );
-};
+}
 
 export default TravelModeComponent;
