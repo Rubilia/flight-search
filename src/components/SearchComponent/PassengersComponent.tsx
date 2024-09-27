@@ -21,7 +21,7 @@ interface Passengers {
   "Infants On lap": number;
 }
 
-const PassengersComponent: React.FC = () => {
+function PassengersComponent() {
   const [passengers, setPassengers] = useState<Passengers>({
     Adults: 1,
     Children: 0,
