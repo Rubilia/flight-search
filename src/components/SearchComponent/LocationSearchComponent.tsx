@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import CustomSearchItem from "./CustomSearchItem"; // Adjust the import path accordingly
+import CustomSearchItem from "./CustomSearchItem";
 
 interface Triplet {
   icon: React.ReactNode;
@@ -20,14 +20,17 @@ function LocationSearchComponent({
 }: LocationSearchProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState(initialText);
+  const [selectedIcon, setSelectedIcon] =
+    useState<React.ReactNode>(searchbarIcon);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleFocus = () => {
     setIsOpen(true);
   };
 
-  const handleSelect = (text: string) => {
+  const handleSelect = (icon: React.ReactNode, text: string) => {
     setInputText(text);
+    setSelectedIcon(icon);
     setIsOpen(false);
   };
 
@@ -39,9 +42,9 @@ function LocationSearchComponent({
       setIsOpen(false);
     }
   };
+  
 
   useEffect(() => {
-    // Close the dropdown when clicking outside
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -53,21 +56,21 @@ function LocationSearchComponent({
       ref={containerRef}
       className="relative w-full max-w-sm mb-8 mt-3 text-left"
     >
-      {/* Search bar */}
       <div className="flex items-center border border-gray-300 rounded-[5px] py-4 px-4">
-        {/* Icon on the left */}
-        <div className="mr-2">{searchbarIcon}</div>
+        <div className="mr-2 text-[#5f6368]">
+          {React.cloneElement(selectedIcon as React.ReactElement, {
+            fontSize: "small",
+          })}
+        </div>
 
-        {/* Editable Text */}
         <input
-          className="w-full text-[#70757a] bg-transparent border-none outline-none font-sans font-normal tracking-wide leading-5"
+          className="w-full text-[#5f6368] bg-transparent border-none outline-none font-sans font-normal tracking-wide leading-5"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onFocus={handleFocus}
         />
       </div>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute w-full mt-2 bg-white rounded-lg shadow-lg left-0 z-10">
           {options.map((option, index) => (
@@ -76,7 +79,7 @@ function LocationSearchComponent({
               icon={option.icon}
               text={option.text}
               subtext={option.subtext}
-              onClick={() => handleSelect(option.text)}
+              onClick={() => handleSelect(option.icon, option.text)}
             />
           ))}
         </div>

@@ -8,6 +8,8 @@ import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import AirplanemodeActiveOutlinedIcon from "@mui/icons-material/AirplanemodeActiveOutlined";
 import LocationSearchComponent from "./LocationSearchComponent";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 
 interface Triplet {
   icon: React.ReactNode;
@@ -62,6 +64,39 @@ const SearchComponent: React.FC = () => {
     },
   ];
 
+  const DestinationOptions: Triplet[] = [
+    {
+      icon: <LanguageOutlinedIcon />,
+      text: "Anywhere",
+      subtext: "Search for trips to anywhere in the world",
+    },
+    {
+      icon: <ScheduleOutlinedIcon />,
+      text: "Paris",
+      subtext: "All airports",
+    },
+    {
+      icon: <ScheduleOutlinedIcon />,
+      text: "Phoenix Sky Harbor International Airport",
+      subtext: "PHX",
+    },
+    {
+      icon: <ScheduleOutlinedIcon />,
+      text: "Phoenix",
+      subtext: "All airports",
+    },
+    {
+      icon: <PlaceOutlinedIcon />,
+      text: "Phoenixville, Pennsylvania",
+      subtext: "Borough in Pennsylvania",
+    },
+    {
+      icon: <PlaceOutlinedIcon />,
+      text: "Vacoas-Phoenix, Mauritius",
+      subtext: "Town in Mauritius",
+    },
+  ];
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 mt-4 mx-[15%]">
       <div className="flex items-center space-x-4 ml-2">
@@ -74,6 +109,11 @@ const SearchComponent: React.FC = () => {
           searchbarIcon={<CircleOutlinedIcon />}
           initialText={"Phoenix, Arizona"}
           options={DepartureOptions}
+        />
+        <LocationSearchComponent
+          searchbarIcon={<PlaceOutlinedIcon />}
+          initialText={"Anywhere"}
+          options={DestinationOptions}
         />
       </div>
     </div>

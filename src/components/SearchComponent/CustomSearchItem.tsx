@@ -18,10 +18,12 @@ const CustomSearchItem: React.FC<CustomSearchItemProps> = ({
       className="flex items-start p-2 cursor-pointer hover:bg-gray-100"
       onClick={onClick}
     >
-      <div className="mr-3">{icon}</div>
+      <div className="mr-3 text-[#5f6368]">
+        {React.cloneElement(icon as React.ReactElement, { fontSize: "small" })}
+      </div>
       <div>
-        <p className="text-sm font-medium text-gray-900">{text}</p>
-        <p className="text-xs text-gray-500">{subtext}</p>
+        <p className="text-sm font-normal text-[#5f6368]">{text}</p>
+        <p className="text-xs text-[#5f6368]">{subtext}</p>
       </div>
     </div>
   );
