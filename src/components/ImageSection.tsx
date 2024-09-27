@@ -1,43 +1,15 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-
+import React from "react";
 import flightsImage from "../assets/images/flights_image.svg";
 
 function ImageSection() {
   return (
-    <Box
-      sx={{
-        marginLeft: "10%",
-        marginRight: "10%",
-        textAlign: "center",
-        position: "relative",
-      }}
-    >
-      <img
-        src={flightsImage}
-        alt="Flights"
-        style={{ width: "100%", height: "auto" }}
-      />
+    <div className="relative mx-[10%] text-center">
+      <img src={flightsImage} alt="Flights" className="w-full h-auto" />
 
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{
-          position: "absolute",
-          bottom: "10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "#202124",
-          fontFamily: "Roboto, sans-serif",
-          fontWeight: 400,
-          fontSize: "56px",
-          padding: "8px 16px",
-          borderRadius: "4px",
-        }}
-      >
+      <div className="absolute bottom-[10%] left-1/2 transform -translate-x-1/2 text-[#202124] font-roboto font-normal text-5xl p-2 rounded-md">
         Flights
-      </Typography>
-    </Box>
+      </div>
+    </div>
   );
 }
 
