@@ -18,3 +18,7 @@
    ```bash
    npm run dev
    ```
+
+### Screenshot
+
+![Demo Screenshot](demo-screenshot.png)
