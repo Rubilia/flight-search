@@ -1,5 +1,3 @@
-// src/components/PassengersComponent.tsx
-
 import React, { useState } from "react";
 import { Menu, Button } from "@mui/material";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -116,17 +114,26 @@ const PassengersComponent: React.FC = () => {
       {/* Button to open the menu */}
       <Button
         onClick={handleClick}
-        className={`flex items-center px-4 py-2 text-sm font-normal focus:outline-none transition-colors duration-200
-            ${
-              isMenuOpen
-                ? "bg-blue-600 text-white"
-                : "bg-transparent text-gray-700 hover:bg-gray-100"
-            }
-          `}
+        className={`flex items-center px-4 py-2 text-sm font-normal focus:outline-none transition-colors duration-200`}
         disableRipple
-        endIcon={
-          <ArrowDropDownIcon/>
-        }
+        sx={{
+          backgroundColor: isMenuOpen ? "#e8f0fe" : "transparent",
+          color: "#70757a", // Gray when closed
+          textTransform: "none",
+          fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
+          fontSize: "14px",
+          fontWeight: 400,
+          letterSpacing: "0.2px",
+          lineHeight: "20px",
+          borderRadius: 0,
+          borderBottom: isMenuOpen
+            ? "2px solid #1a73e8"
+            : "2px solid transparent",
+          "&:hover": {
+            backgroundColor: "#e8f0fe",
+          },
+        }}
+        endIcon={<ArrowDropDownIcon />}
       >
         <PersonOutlineOutlinedIcon
           className="mr-2"
@@ -159,14 +166,25 @@ const PassengersComponent: React.FC = () => {
           style: { minWidth: "300px" },
         }}
       >
-        <div className="p-4">
+        <div
+          className="p-4"
+          style={{
+            paddingTop: "10px", // Reduce the top padding to 10px
+          }}
+        >
           {rows.map((row) => (
             <div
               key={row.key}
               className="flex items-center justify-between py-2"
+              style={{
+                marginBottom: "10px", // 10px space between rows
+              }}
             >
               {/* Labels */}
-              <LabelWithSublabel label={row.label} subLabel={row.subLabel} />
+              <LabelWithSublabel
+                label={row.label}
+                subLabel={row.subLabel}
+              />
 
               {/* Controls */}
               <div className="flex items-center">
@@ -194,18 +212,37 @@ const PassengersComponent: React.FC = () => {
             </div>
           ))}
           {/* Action buttons */}
-          <div className="flex justify-end mt-4">
+          <div className="flex justify-end mt-2 mb-4" style={{ gap: "16px" }}>
             <Button
               onClick={() => handleClose(false)}
-              className="text-blue-500 hover:text-blue-700 mr-4"
+              className="mr-4"
               disableRipple
+              sx={{
+                color: "#1a73e8",
+                borderRadius: "12px",
+                "&:hover": {
+                  color: "#135ba1",
+                },
+                "&:active": {
+                  color: "#104e8b",
+                },
+              }}
             >
               Cancel
             </Button>
             <Button
               onClick={() => handleClose(true)}
-              className="text-blue-500 hover:text-blue-700"
               disableRipple
+              sx={{
+                color: "#1a73e8",
+                borderRadius: "12px",
+                "&:hover": {
+                  color: "#135ba1",
+                },
+                "&:active": {
+                  color: "#104e8b",
+                },
+              }}
             >
               Done
             </Button>
