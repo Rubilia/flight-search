@@ -118,7 +118,7 @@ const PassengersComponent: React.FC = () => {
         disableRipple
         sx={{
           backgroundColor: isMenuOpen ? "#e8f0fe" : "transparent",
-          color: "#70757a", // Gray when closed
+          color: "#70757a",
           textTransform: "none",
           fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
           fontSize: "14px",
@@ -167,18 +167,12 @@ const PassengersComponent: React.FC = () => {
         }}
       >
         <div
-          className="p-4"
-          style={{
-            paddingTop: "10px", // Reduce the top padding to 10px
-          }}
+          className="p-2"
         >
           {rows.map((row) => (
             <div
               key={row.key}
-              className="flex items-center justify-between py-2"
-              style={{
-                marginBottom: "10px", // 10px space between rows
-              }}
+              className="flex items-center justify-between py-2 mb-0"
             >
               {/* Labels */}
               <LabelWithSublabel
@@ -212,7 +206,7 @@ const PassengersComponent: React.FC = () => {
             </div>
           ))}
           {/* Action buttons */}
-          <div className="flex justify-end mt-2 mb-4" style={{ gap: "16px" }}>
+          <div className="flex justify-end mt-0 mb-0" style={{ gap: "16px" }}>
             <Button
               onClick={() => handleClose(false)}
               className="mr-4"
