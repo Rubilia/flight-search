@@ -98,13 +98,13 @@ const SearchComponent: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 mt-4 mx-[15%]">
+    <div className="bg-white shadow-lg rounded-lg p-4 mt-4 mx-0 lg:mx-[20%]">
       <div className="flex items-center space-x-4 ml-2">
         <AdvancedDropdownComponent options={travelOptions} />
         <PassengersComponent />
         <AdvancedDropdownComponent options={tickerTypeOptions} />
       </div>
-      <div className="flex items-center space-x-4 ml-2">
+      <div className="flex items-center space-x-4 ml-2 mt-4">
         <LocationSearchComponent
           searchbarIcon={<CircleOutlinedIcon />}
           initialText={"Phoenix, Arizona"}
@@ -117,7 +117,7 @@ const SearchComponent: React.FC = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default SearchComponent;

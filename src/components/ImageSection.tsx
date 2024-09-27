@@ -1,4 +1,3 @@
-import React from "react";
 import flightsImage from "../assets/images/flights_image.svg";
 
 function ImageSection() {
